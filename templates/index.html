@@ -3,103 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPE DETECTION</title>
+    <title>PPE Detection</title>
     <style>
+        /* General Styling */
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #e0eafc, #cfdef3); /* Gradient Background */
-            height: 100vh;
+            background: linear-gradient(135deg, #ff6a88, #ffc3a0, #86a8e7); 
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            min-height: 100vh;
+            overflow: hidden;
         }
-    
+
         h1 {
-            text-align: center;
             margin-top: 20px;
             font-size: 3em;
-            font-weight: 700;
-            color: #4a148c; /* Deep Purple */
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Text shadow for depth */
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+            animation: fadeInDown 1s ease-in-out;
         }
-    
+
         .container {
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: flex-start;
-            width: 80%;
+            width: 90%;
+            max-width: 1200px;
             margin-top: 30px;
-            gap: 20px;
-            padding: 20px;
-            background: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Smooth shadow for the container */
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
-    
+
         .column {
             width: 45%;
+            margin: 15px;
             padding: 20px;
-            background: #f7f8fa;
-            border: 1px solid #e0e0e0; /* Subtle border */
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
             border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Card shadow */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), 
+                        -5px -5px 15px rgba(255, 255, 255, 0.9);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
-    
-        .column button {
+
+        .column:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             font-size: 1.2em;
-            font-weight: 600;
+            font-weight: bold;
             color: #ffffff;
-            background: linear-gradient(90deg, #6a1b9a, #8e24aa); /* Button gradient */
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            margin-bottom: 15px;
-            transition: all 0.3s ease-in-out;
+            transition: all 0.4s ease-in-out;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
-    
-        .column button:hover {
-            background: linear-gradient(90deg, #4a148c, #6a1b9a); /* Hover effect */
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+
+        button:hover {
+            background: linear-gradient(135deg, #feb47b, #ff7e5f);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
         }
-    
+
         .upload-preview, .predict-output {
             width: 100%;
-            margin-top: 15px;
+            margin-top: 20px;
             text-align: center;
             display: flex;
             justify-content: center;
         }
-    
-        .upload-preview img, .upload-preview video, 
+
+        .upload-preview img, .upload-preview video,
         .predict-output img, .predict-output video {
             max-width: 100%;
             border-radius: 12px;
-            border: 1px solid #d1d1d1; /* Subtle border for media */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow for media elements */
+            border: 2px solid #feb47b;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
         }
-    
+
+        .upload-preview img:hover, .upload-preview video:hover,
+        .predict-output img:hover, .predict-output video:hover {
+            transform: scale(1.05);
+            border-color: #ff7e5f;
+        }
+
         video {
             max-height: 300px;
-            border-radius: 12px;
         }
-    
-        /* Add responsiveness for smaller screens */
+
+        /* Fade In Animation */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gradient Animation */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
                 align-items: center;
             }
+
             .column {
                 width: 90%;
             }
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            margin-top: 20px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #ff7e5f;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
     
