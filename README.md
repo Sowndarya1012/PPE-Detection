@@ -72,4 +72,6 @@ Expose app via Nginx or public port
 
 ✅OUTPUT
 
+(https://github.com/user-attachments/assets/5695d4fd-61a7-4628-8dbb-25e469e413c0)
+
 
