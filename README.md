@@ -19,26 +19,57 @@ This project is used to detect whether a person is wearing Personal Protective E
 - Flask (for web interface)
 - HTML, CSS (for basic frontend)
 
- How to Run the Project
- 
- 1. Clone the Project
-```bash
-git clone https://github.com/yourusername/ppe-detection.git
-cd ppe-detection
+ 🚀 Basic Workflow
+Dataset – Use public PPE datasets or create your own.
 
-2.CI/CD Pipeline (GitHub Actions)
-This project uses GitHub Actions to:
+✅ Model Training – Train a YOLOv5 or similar model to detect:
 
-Run tests and linting
+Helmet
 
-Build Docker image
+Mask
 
-Push to DockerHub
+Vest
 
-Deploy to server using SSH
+Person
 
-Workflow File: .github/workflows/deploy.yml
-Check the CI/CD YAML file for details.
+🔁Model Inference – Run real-time video stream for detection.
 
-OUTPUT
-![Screenshot 2024-11-18 183751](https://github.com/user-attachments/assets/8a5c34a9-4831-490f-826c-285d9ca358eb)
+Flask App – Serve detection model with video stream in browser.
+
+Frontend – Display video feed + detection output.
+
+Logging – Save non-compliance events to DB.
+
+🚀 4. CI/CD Pipeline for Deployment
+
+✅ CI (Continuous Integration)
+CI automatically tests and builds your application whenever you push to your repository.
+
+Steps:
+
+Push Code to GitHub
+
+Run Tests (if any)
+
+Build Docker Image
+
+Push Docker Image to DockerHub or GitHub Container Registry
+
+🔁 CD (Continuous Deployment)
+
+CD deploys the tested code automatically to your hosting server/cloud.
+
+Steps:
+
+Pull image from DockerHub
+
+Deploy to server (AWS/GCP/Heroku)
+
+Run container
+
+Expose app via Nginx or public port
+
+
+✅OUTPUT
+
+
